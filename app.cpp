@@ -4,8 +4,11 @@ using namespace std;
 
 int main(int argc, char** argv, char** envp){
 	ArtistList record;
-	
-	record.artist_init();
+
+	ifstream input_file;
+	input_file.open("data.txt");
+	record.artist_init(input_file);
+
 	cout << "Please enter a number for one of the following commands: " << endl;
 	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Add a new artist." << endl;
 	cout << "(4): Add a new song to an artist's list.\n(5): Edit views and likes for a song.\n(6): Remove all songs with less than a certain amount of views." << endl;
@@ -13,7 +16,7 @@ int main(int argc, char** argv, char** envp){
 	int command;
 	cin >> command;
 	while(command >= 1 && command <= 6){
-		cin.ignore();	
+		cin.ignore();
 		switch(command){
 			case 1:{
 				record.print_artistlist();
@@ -54,4 +57,5 @@ int main(int argc, char** argv, char** envp){
 	cout << "(4): Add a new song to an artist's list.\n(5): Edit views and likes for a song.\n(6): Remove all songs with less than a certain amount of views." << endl;
 	cin >> command;
 	}
+	input_file.close();
 }

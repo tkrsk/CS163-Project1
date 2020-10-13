@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 #include "artist.h"
 
@@ -20,7 +21,7 @@ class ArtistList{
 	void set_artist(Artist* name);
 	void add_artist();
 	void add_songlist(char* parm);
-	void artist_init();
+	void artist_init(ifstream& input_file);
 //FIXME: ADD PRINT ARTIST LIST, COMMANDS
 
 //Ostream
@@ -28,6 +29,7 @@ class ArtistList{
 	void print_songlist(char* parm);
 	
 //Misc
+	char* get_line(ifstream& input);
 	char* strbuild();
 	private:
 	Artist* head;

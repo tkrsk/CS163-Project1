@@ -131,23 +131,51 @@ void ArtistList::add_songlist(char* parm){
 	}
 }
 
-void ArtistList::artist_init(){
-	head = new Artist;
-	head->set_artist(head);
-	head->set_news(head);
-	head->set_desc(head);
+void ArtistList::artist_init(ifstream& input_file){
+	char *name, *news, *desc, * title;
+	name = get_line(input_file); 
+	input_file.ignore();
+	news = get_line(input_file); 
+	input_file.ignore();
+	desc = get_line(input_file); 
+	input_file.ignore();
+	head = new Artist(name, news, desc);
 
-	char* temp = this->strbuild();
 	int min = 0, 
 		sec = 0, 
 		views = 0, 
 		likes = 0;
-	cin >> min;
-	cin >> sec;
-	cin >> views;
-	cin >> likes;
-	head->add_song(temp, min, sec, views, likes);
-	cin.ignore();
+
+	title = get_line(input_file);
+	input_file.ignore();
+	input_file >> min;
+	input_file >> sec;
+	input_file >> views;
+	input_file >> likes;
+	head->add_song(title, min, sec, views, likes);
+}
+
+char* ArtistList::get_line(ifstream& input){
+	char buffer = '\0';
+	char * output = nullptr;
+
+	while(input.peek() != '\n'){
+		buffer = input.get();
+		if(output == nullptr){
+			output = new char[2];
+			output[0] = buffer;
+			output[1] = '\0';
+		}
+		else{
+			char * temp = new char[strlen(output) + 2];
+			strcpy(temp, output);
+			temp[strlen(temp)] = buffer;
+			temp[strlen(output) + 1] = '\0';
+			delete [] output;
+			output = temp;
+		}
+	}
+	return output;
 }
 
 //MISC

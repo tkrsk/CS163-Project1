@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 #include "artistlist.h"
 
