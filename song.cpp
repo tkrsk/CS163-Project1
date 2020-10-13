@@ -9,6 +9,7 @@ Song::Song(){
 	song_sec = 0;
 	song_views = 0;
 	song_likes = 0;
+	next_song = nullptr;
 }
 
 Song::Song(char* name, int min, int sec, int views, int likes){
@@ -21,6 +22,7 @@ Song::Song(char* name, int min, int sec, int views, int likes){
 	set_duration(min, sec);
 	song_views = views;
 	song_likes = likes;
+	next_song = nullptr;
 }
 
 Song::~Song(){

@@ -28,8 +28,13 @@ void ArtistList::set_artist(Artist* name){
 
 void ArtistList::add_artist(){
 	Artist* add = new Artist;
+	cout << "Please enter the artist's name: " << endl;
 	add->set_artist(add);
+	
+	cout << "Please enter recent news about the artist: " << endl;
 	add->set_news(add);
+
+	cout << "Please enter a description about the artist: " << endl;
 	add->set_desc(add);
 
 	Artist* curr = head;
@@ -124,6 +129,25 @@ void ArtistList::add_songlist(char* parm){
 		 cout << "Artist not found!" << endl;
 		}
 	}
+}
+
+void ArtistList::artist_init(){
+	head = new Artist;
+	head->set_artist(head);
+	head->set_news(head);
+	head->set_desc(head);
+
+	char* temp = this->strbuild();
+	int min = 0, 
+		sec = 0, 
+		views = 0, 
+		likes = 0;
+	cin >> min;
+	cin >> sec;
+	cin >> views;
+	cin >> likes;
+	head->add_song(temp, min, sec, views, likes);
+	cin.ignore();
 }
 
 //MISC

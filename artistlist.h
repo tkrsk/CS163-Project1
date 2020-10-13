@@ -20,6 +20,7 @@ class ArtistList{
 	void set_artist(Artist* name);
 	void add_artist();
 	void add_songlist(char* parm);
+	void artist_init();
 //FIXME: ADD PRINT ARTIST LIST, COMMANDS
 
 //Ostream

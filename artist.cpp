@@ -67,7 +67,6 @@ Artist* Artist::get_next_artist(){
 
 //MUTATORS
 void Artist::set_artist(Artist* parm){
-	cout << "Please enter the artist's name: " << endl;
 	char buffer = '\0';
 
 	while(cin.peek() != '\n'){
@@ -90,7 +89,6 @@ void Artist::set_artist(Artist* parm){
 }
 
 void Artist::set_news(Artist* parm){
-	cout << "Please enter recent news about the artist: " << endl;
 	char buffer = '\0';
 	
 	while(cin.peek() != '\n'){
@@ -113,7 +111,6 @@ void Artist::set_news(Artist* parm){
 }
 
 void Artist::set_desc(Artist* parm){
-	cout << "Please enter a description about the artist: " << endl;
 	char buffer = '\0';
 
 	while(cin.peek() != '\n'){
