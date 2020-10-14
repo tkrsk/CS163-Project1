@@ -39,18 +39,21 @@ Artist::~Artist(){
 	if(artist_name != nullptr){
 		if(artist_name[0] != '\0'){
 			for(int idx = 0; artist_name[(idx) + 1] != '\0'; idx++) artist_name[idx] = '\0';
+			
 			delete [] artist_name;
 		}
 	}
 	if(artist_news != nullptr){
 		if(artist_news[0] != '\0'){
 			for(int idx = 0; artist_news[(idx) + 1] != '\0'; idx++) artist_news[idx] = '\0';
+			
 			delete [] artist_news;
 		}
 	}
 	if(artist_desc != nullptr){
 		if(artist_desc[0] != '\0'){
 			for(int idx = 0; artist_desc[(idx) + 1] != '\0'; idx++) artist_desc[idx] = '\0';
+			
 			delete [] artist_desc;
 		}
 	}
@@ -95,21 +98,30 @@ void Artist::set_artist(Artist* parm){
 
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
+	
 		if(artist_name == nullptr){
+			
 			artist_name = new char[2];
+			
 			artist_name[0] = buffer;
+			
 			artist_name[1] = '\0';
 		}
 		else{
 			char * temp = new char[strlen(artist_name) + 2]; //Temporary cstring to change artist name to right size
+			
 			strcpy(temp, artist_name);
+			
 			temp[strlen(temp)] = buffer;
+			
 			temp[strlen(artist_name) + 1] = '\0';
+			
 			delete [] artist_name;
+			
 			artist_name = temp;
 		}
 	}
-	//cin.ignore();
+	cin.ignore();
 }
 
 
@@ -120,20 +132,28 @@ void Artist::set_news(Artist* parm){
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
 		if(artist_news == nullptr){
+			
 			artist_news = new char[2];
+			
 			artist_news[0] = buffer;
+			
 			artist_news[1] = '\0';
 		}
 		else{
 			char * temp = new char[strlen(artist_news) + 2]; //Temporary cstring to change artist news to right size char array
+			
 			strcpy(temp, artist_news);
+			
 			temp[strlen(temp)] = buffer;
+			
 			temp[strlen(artist_news) + 1] = '\0';
+			
 			delete [] artist_news;
+			
 			artist_news = temp;
 		}
 	}
-	//cin.ignore();
+	cin.ignore();
 }
 
 
@@ -143,21 +163,29 @@ void Artist::set_desc(Artist* parm){
 
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
+		
 		if(artist_desc == nullptr){
 			artist_desc = new char[2];
+			
 			artist_desc[0] = buffer;
+			
 			artist_desc[1] = '\0';
 		}
 		else{
 			char * temp = new char[strlen(artist_desc) + 2]; //Temporary cstring to change artist description to right size char array
+			
 			strcpy(temp, artist_desc);
+			
 			temp[strlen(temp)] = buffer;
+			
 			temp[strlen(artist_desc) + 1] = '\0';
+			
 			delete [] artist_desc;
+			
 			artist_desc = temp;
 		}
 	}
-	//cin.ignore();
+	cin.ignore();
 }
 
 
@@ -180,5 +208,6 @@ void Artist::add_song(char* name, int min, int sec, int views, int likes){
 //PRINT FUNCTION, CALLS FUNCTION IN SONGLIST
 void Artist::print_songs(){
 	cout << "---" << endl;
+	
 	discog.print(discog.get_songlist());
 }

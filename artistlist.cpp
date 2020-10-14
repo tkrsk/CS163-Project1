@@ -101,6 +101,7 @@ void ArtistList::songlist_init(ifstream& song_file){
 	song_file.ignore();
 	
 	delete [] title;
+
 	delete [] artist;
 }
 
@@ -114,6 +115,7 @@ void ArtistList::set_artist(Artist* name){
 
 
 //FUNCTION TO ADD NEW ARTIST
+//Will have to redo function to do everything in the setter functions here
 void ArtistList::add_artist(){
 	Artist* add = new Artist; //New artist node to be added to list for user to define
 
@@ -254,8 +256,10 @@ void ArtistList::del_song(int views){
 
 	while(curr != nullptr){
 		SongList* temp = curr->get_songlist(); //Temporary songlist for easier readability for next function
-
-		temp->remove_song(views);
+		
+		if(temp->get_songlist() != nullptr){
+			temp->remove_song(views);
+		}
 
 		curr = curr->get_next_artist();
 	}

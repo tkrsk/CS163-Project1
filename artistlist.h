@@ -28,14 +28,8 @@ class ArtistList{
 	void artist_init(ifstream& artist_file);
 	void songlist_init(ifstream& song_file);
 
-//Function to change head node
-	void set_artist(Artist* name);
-
 //Function to add new artist
 	void add_artist();
-
-//Function to sort artist by alphabetical order
-	void sort_artist(Artist* add);
 
 //Function to add a song to an artist
 	void add_songlist(char* parm);
@@ -59,4 +53,9 @@ class ArtistList{
 	private:
 	Artist* head;
 
+//Function to change head node
+	void set_artist(Artist* name);
+
+//Function to sort artist by alphabetical order
+	void sort_artist(Artist* add);
 };
