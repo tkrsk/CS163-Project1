@@ -21,6 +21,55 @@ Artist* ArtistList::get_artist(){
 	return head;
 }
 
+//FILE INIT
+void ArtistList::artist_init(ifstream& artist_file){
+	char *name, *news, *desc;
+
+	name = get_line(artist_file); 
+
+	news = get_line(artist_file); 
+
+	desc = get_line(artist_file); 
+
+	Artist* add = new Artist(name, news, desc);
+	sort_artist(add);
+
+	if(artist_file.peek() == '\n') artist_file.get();
+}
+
+void ArtistList::songlist_init(ifstream& song_file){
+	Artist* temp = head;
+	char* artist = get_line(song_file);
+	bool found = false;
+
+	if(temp == nullptr) cout << "Songs could not be added due to missing artist list." << endl;
+	else{
+		while(temp != nullptr){
+			if(strcmp(artist, temp->get_name()) == 0){
+				found = true;
+				break;
+			}
+			temp = temp->get_next_artist();
+		}
+		if(found == false){
+		 cout << "Artist not found!" << endl;
+		 return;
+		}
+	}
+	char* title;
+	int min = 0, 
+		sec = 0, 
+		views = 0, 
+		likes = 0;	
+	title = get_line(song_file);
+	song_file >> min;
+	song_file >> sec;
+	song_file >> views;
+	song_file >> likes;
+	temp->add_song(title, min, sec, views, likes);
+	song_file.ignore();
+}
+
 //MUTATOR
 void ArtistList::set_artist(Artist* name){
 	head = name;
@@ -72,37 +121,6 @@ void ArtistList::sort_artist(Artist* add){
 		temp->set_next_artist(add);
 	}	
 }
-	
-
-//OSTREAM
-void ArtistList::print_artistlist(){
-	Artist* curr = head;
-	while(curr != nullptr){
-		cout << curr->get_name() << endl;
-		curr = curr->get_next_artist();
-	}
-}
-
-void ArtistList::print_songlist(char* parm){
-	Artist* temp = head;
-	bool found = false;
-
-	if(temp == nullptr) cout << "There are no artist listed." << endl;
-	else{
-		while(temp != nullptr){
-			if(strcmp(parm, temp->get_name()) == 0){
-				temp->print_songs();
-				found = true;
-			}
-			temp = temp->get_next_artist();
-		}
-	}
-	if(found == false) cout << "Artist could not be found." << endl;
-}
-
-void ArtistList::print_info(char* parm){
-
-}
 
 void ArtistList::add_songlist(char* parm){
 	Artist* temp = head;
@@ -139,54 +157,65 @@ void ArtistList::add_songlist(char* parm){
 	}
 }
 
-void ArtistList::artist_init(ifstream& artist_file){
-	char *name, *news, *desc;
-
-	name = get_line(artist_file); 
-
-	news = get_line(artist_file); 
-
-	desc = get_line(artist_file); 
-
-	Artist* add = new Artist(name, news, desc);
-	sort_artist(add);
-
-	if(artist_file.peek() == '\n') artist_file.get();
+//REMOVAL FUNCTIONS
+void ArtistList::del_song(int views){
+	Artist* temp = head;
+	while(temp != nullptr){
+		SongList* curr = temp->get_songlist();
+		curr->remove_song(views);
+		temp = temp->get_next_artist();
+	}
 }
 
-void ArtistList::songlist_init(ifstream& song_file){
+//PRINT FUNCTIONS
+void ArtistList::print_artistlist(){
+	Artist* curr = head;
+	while(curr != nullptr){
+		cout << curr->get_name() << endl;
+		curr = curr->get_next_artist();
+	}
+}
+
+void ArtistList::print_songlist(char* parm){
 	Artist* temp = head;
-	char* artist = get_line(song_file);
 	bool found = false;
 
-	if(temp == nullptr) cout << "Songs could not be added due to missing artist list." << endl;
+	if(temp == nullptr) cout << "There are no artist listed." << endl;
 	else{
 		while(temp != nullptr){
-			if(strcmp(artist, temp->get_name()) == 0){
+			if(strcmp(parm, temp->get_name()) == 0){
+				cout << "---" << endl;
+				temp->print_songs();
 				found = true;
-				break;
 			}
 			temp = temp->get_next_artist();
 		}
-		if(found == false){
-		 cout << "Artist not found!" << endl;
-		 return;
-		}
 	}
-	char* title;
-	int min = 0, 
-		sec = 0, 
-		views = 0, 
-		likes = 0;	
-	title = get_line(song_file);
-	song_file >> min;
-	song_file >> sec;
-	song_file >> views;
-	song_file >> likes;
-	temp->add_song(title, min, sec, views, likes);
-	song_file.ignore();
+	if(found == false) cout << "Artist could not be found." << endl;
 }
 
+void ArtistList::print_info(char* parm){
+	Artist* temp = head;
+	bool found = false;
+
+	if(temp == nullptr) cout << "There are no artist listed. " << endl;
+	else{
+		while(temp != nullptr){
+			if(strcmp(parm, temp->get_name()) == 0){
+				cout << "---" << endl;
+				cout << "Artist Name: " << temp->get_name() << endl;
+				cout << "-\nDescription: " << temp->get_desc() << endl;
+				cout << "-\nRecent News: " << temp->get_news() << endl;
+				cout << "---" << endl;
+				found = true;
+			}
+			temp = temp->get_next_artist();
+		}
+	}
+	if(found == false) cout << "Artist could not be found." << endl;
+}
+
+//MISC
 char* ArtistList::get_line(ifstream& input){
 	char buffer = '\0';
 	char * output = nullptr;
@@ -211,7 +240,6 @@ char* ArtistList::get_line(ifstream& input){
 	return output;
 }
 
-//MISC
 char* ArtistList::strbuild(){
 	char buffer = '\0';
 	char * string = nullptr;

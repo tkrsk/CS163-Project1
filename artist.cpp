@@ -64,6 +64,9 @@ char* Artist::get_desc(){
 Artist* Artist::get_next_artist(){
 	return next_artist;
 }
+SongList* Artist::get_songlist(){
+	return &discog;
+}
 
 //MUTATORS
 void Artist::set_artist(Artist* parm){

@@ -20,7 +20,7 @@ int main(int argc, char** argv, char** envp){
 
 	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Display info on an artist.\n(4): Add a new artist." << endl;
 	cout << "(5): Add a new song to an artist's list.\n(6): Edit views and likes for a song.\n(7): Remove all songs with less than a certain amount of views." << endl;
-	cout << "Please enter a number for one of the listed commands: " << endl;
+	cout << "Please enter a number for one of the listed commands: ";
 	
 	int command;
 	cin >> command;
@@ -63,13 +63,13 @@ int main(int argc, char** argv, char** envp){
 				int remove;
 				cout << "Please enter a number to remove all songs with less than that many views: ";
 				cin >> remove;
-				//FIXME: ADD REMOVAL FUNCTION
+				record.del_song(remove);
 				break;
 			}
 		}
 	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Display info on an artist.\n(4): Add a new artist." << endl;
 	cout << "(5): Add a new song to an artist's list.\n(6): Edit views and likes for a song.\n(7): Remove all songs with less than a certain amount of views." << endl;
-	cout << "Please enter a number for one of the listed commands: " << endl;
+	cout << "Please enter a number for one of the listed commands: ";
 	cin >> command;
 	}
 }

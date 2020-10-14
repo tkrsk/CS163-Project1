@@ -114,4 +114,5 @@ void Song::out(){
 	cout << "Duration: " << duration << endl;
 	cout << "Views: " << song_views << endl;
 	cout << "Likes: " << song_likes << endl;
+	cout << "---" << endl;
 }

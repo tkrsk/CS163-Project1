@@ -57,13 +57,29 @@ void SongList::insert_song(char* input, int min, int sec, int views, int likes){
 void SongList::remove_song(int views){
 	Song* curr = first_song;
 	Song* next = curr->get_next_song();
+	
 	while(next != nullptr){
+		if(curr->get_views() < views){
+			delete curr;
+			first_song = next;
+			curr = first_song;
+			next = curr->get_next_song();
+			continue;
+		}
 		if(next->get_views() < views){
 			curr->set_next_song(next->get_next_song());
 			delete next;
+			next = curr->get_next_song();
 		}
-		curr = curr->get_next_song();
-		next = curr->get_next_song();
+		else{
+			curr = curr->get_next_song();
+			next = curr->get_next_song();
+		}
+	}
+	if(first_song->get_views() < views){
+		next = first_song->get_next_song();
+		delete first_song;
+		first_song = next;
 	}
 }
 
