@@ -56,7 +56,7 @@ int main(int argc, char** argv, char** envp){
 			case 6:{
 				cout << "Please enter artist whose song you want to edit: ";
 				char* temp = record.strbuild();
-				//FIXME: ADD ARTIST SEARCH FUNCTION
+				record.edit_song(temp);
 				break;
 			}
 			case 7:{

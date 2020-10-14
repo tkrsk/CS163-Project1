@@ -54,6 +54,33 @@ void SongList::insert_song(char* input, int min, int sec, int views, int likes){
 	}
 }
 
+void SongList::edit(char* parm){
+	Song* curr = first_song;
+	bool found = false;
+
+	if(curr == nullptr) cout << "This artist has no songs listed." << endl;
+	else{
+		while(curr != nullptr){
+			if(strcmp(parm, curr->get_song_name()) == 0){
+				int views, likes;
+				
+				cout << "Please enter the new amount of views: ";
+				cin >> views;
+				curr->edit_views(views);
+				
+				cout << "Please enter the new amount of likes: ";
+				cin >> likes;
+				curr->edit_likes(likes);
+
+				found = true;
+			}
+			curr = curr->get_next_song();
+		}
+	}
+	if(found == false) cout << "Invalid song name." << endl;
+}
+
+
 void SongList::remove_song(int views){
 	Song* curr = first_song;
 	Song* next = curr->get_next_song();

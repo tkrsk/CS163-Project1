@@ -18,6 +18,7 @@ class SongList{
 
 //Mutator
 	void insert_song(char* input, int min, int sec, int views, int likes);
+	void edit(char* parm);
 	void remove_song(int likes);
 	void set_first_song(Song* new_head);
 //Print 

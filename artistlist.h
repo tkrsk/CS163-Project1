@@ -33,6 +33,9 @@ class ArtistList{
 //Function to add a song to an artist
 	void add_songlist(char* parm);
 
+//Function to edit likes and views on a song
+	void edit_song(char* parm);
+
 //Function to remove songs with less than x amount of views
 	void del_song(int views); 
 

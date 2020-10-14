@@ -144,5 +144,6 @@ void Artist::add_song(char* name, int min, int sec, int views, int likes){
 }
 
 void Artist::print_songs(){
+	cout << "---" << endl;
 	discog.print(discog.get_songlist());
 }

@@ -38,18 +38,18 @@ void ArtistList::artist_init(ifstream& artist_file){
 }
 
 void ArtistList::songlist_init(ifstream& song_file){
-	Artist* temp = head;
+	Artist* curr = head;
 	char* artist = get_line(song_file);
 	bool found = false;
 
-	if(temp == nullptr) cout << "Songs could not be added due to missing artist list." << endl;
+	if(curr == nullptr) cout << "Songs could not be added due to missing artist list." << endl;
 	else{
-		while(temp != nullptr){
-			if(strcmp(artist, temp->get_name()) == 0){
+		while(curr != nullptr){
+			if(strcmp(artist, curr->get_name()) == 0){
 				found = true;
 				break;
 			}
-			temp = temp->get_next_artist();
+			curr = curr->get_next_artist();
 		}
 		if(found == false){
 		 cout << "Artist not found!" << endl;
@@ -66,7 +66,7 @@ void ArtistList::songlist_init(ifstream& song_file){
 	song_file >> sec;
 	song_file >> views;
 	song_file >> likes;
-	temp->add_song(title, min, sec, views, likes);
+	curr->add_song(title, min, sec, views, likes);
 	song_file.ignore();
 }
 
@@ -123,13 +123,13 @@ void ArtistList::sort_artist(Artist* add){
 }
 
 void ArtistList::add_songlist(char* parm){
-	Artist* temp = head;
+	Artist* curr = head;
 	bool found = false;
 
-	if(temp == nullptr) cout << "There are no artist listed." << endl;
+	if(curr == nullptr) cout << "There are no artist listed." << endl;
 	else{
-		while(temp != nullptr){
-			if(strcmp(parm, temp->get_name()) == 0){
+		while(curr != nullptr){
+			if(strcmp(parm, curr->get_name()) == 0){
 				cout << "Please enter the name of the song: ";
 				char* name = strbuild();
 				int min, sec, views, likes;
@@ -145,11 +145,11 @@ void ArtistList::add_songlist(char* parm){
 				cout << "Please enter the song's likes amount: ";
 				cin >> likes;
 
-				temp->add_song(name, min, sec, views, likes);
+				curr->add_song(name, min, sec, views, likes);
 				found = true;
 				return;
 			}
-			temp = temp->get_next_artist();
+			curr = curr->get_next_artist();
 		}
 		if(found == false){
 		 cout << "Artist not found!" << endl;
@@ -157,13 +157,35 @@ void ArtistList::add_songlist(char* parm){
 	}
 }
 
+//VIEWS/LIKES EDITOR FUNCTION
+void ArtistList::edit_song(char* parm){
+	Artist* curr = head;
+	bool found = false;
+
+	if(curr == nullptr) cout << "There are no artist listed." << endl;
+	else{
+		while(curr != nullptr){
+			if(strcmp(parm, curr->get_name()) == 0){
+				SongList* temp = curr->get_songlist();
+				curr->print_songs();
+				cout << "Please enter the name of the song you want to edit: ";
+				char* song = strbuild();
+				temp->edit(song);
+				found = true;
+			}
+			curr = curr->get_next_artist();
+		}
+	}
+	if(found == false) cout << "Artist could not be found." << endl;
+}
+
 //REMOVAL FUNCTIONS
 void ArtistList::del_song(int views){
-	Artist* temp = head;
-	while(temp != nullptr){
-		SongList* curr = temp->get_songlist();
-		curr->remove_song(views);
-		temp = temp->get_next_artist();
+	Artist* curr = head;
+	while(curr != nullptr){
+		SongList* temp = curr->get_songlist();
+		temp->remove_song(views);
+		curr = curr->get_next_artist();
 	}
 }
 
@@ -177,39 +199,38 @@ void ArtistList::print_artistlist(){
 }
 
 void ArtistList::print_songlist(char* parm){
-	Artist* temp = head;
+	Artist* curr = head;
 	bool found = false;
 
-	if(temp == nullptr) cout << "There are no artist listed." << endl;
+	if(curr == nullptr) cout << "There are no artist listed." << endl;
 	else{
-		while(temp != nullptr){
-			if(strcmp(parm, temp->get_name()) == 0){
-				cout << "---" << endl;
-				temp->print_songs();
+		while(curr != nullptr){
+			if(strcmp(parm, curr->get_name()) == 0){
+				curr->print_songs();
 				found = true;
 			}
-			temp = temp->get_next_artist();
+			curr = curr->get_next_artist();
 		}
 	}
 	if(found == false) cout << "Artist could not be found." << endl;
 }
 
 void ArtistList::print_info(char* parm){
-	Artist* temp = head;
+	Artist* curr = head;
 	bool found = false;
 
-	if(temp == nullptr) cout << "There are no artist listed. " << endl;
+	if(curr == nullptr) cout << "There are no artist listed. " << endl;
 	else{
-		while(temp != nullptr){
-			if(strcmp(parm, temp->get_name()) == 0){
+		while(curr != nullptr){
+			if(strcmp(parm, curr->get_name()) == 0){
 				cout << "---" << endl;
-				cout << "Artist Name: " << temp->get_name() << endl;
-				cout << "-\nDescription: " << temp->get_desc() << endl;
-				cout << "-\nRecent News: " << temp->get_news() << endl;
+				cout << "Artist Name: " << curr->get_name() << endl;
+				cout << "-\nDescription: " << curr->get_desc() << endl;
+				cout << "-\nRecent News: " << curr->get_news() << endl;
 				cout << "---" << endl;
 				found = true;
 			}
-			temp = temp->get_next_artist();
+			curr = curr->get_next_artist();
 		}
 	}
 	if(found == false) cout << "Artist could not be found." << endl;
