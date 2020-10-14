@@ -35,12 +35,14 @@ int main(int argc, char** argv, char** envp){
 				cout << "Please enter artist whose songs you want to see: ";
 				char* temp = record.strbuild();
 				record.print_songlist(temp);
+				delete [] temp;
 				break;
 			}
 			case 3:{
 				cout << "Please enter artist whose info you want to see: ";
 				char* temp = record.strbuild();
 				record.print_info(temp);
+				delete [] temp;
 				break;
 			}
 			case 4:{
@@ -51,12 +53,14 @@ int main(int argc, char** argv, char** envp){
 				cout << "Please enter artist to add new song: ";
 				char* temp = record.strbuild();
 				record.add_songlist(temp);
+				delete [] temp;
 				break;
 			}
 			case 6:{
 				cout << "Please enter artist whose song you want to edit: ";
 				char* temp = record.strbuild();
 				record.edit_song(temp);
+				delete [] temp;
 				break;
 			}
 			case 7:{
