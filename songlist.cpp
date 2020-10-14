@@ -31,7 +31,7 @@ void SongList::insert_song(char* input, int min, int sec, int views, int likes){
 		Song* curr = first_song;
 		
 		while(curr != nullptr){
-			if(curr->get_views() > add->get_views()){
+			if(curr->get_views() < add->get_views()){
 				break;
 			}
 			curr = curr->get_next_song();

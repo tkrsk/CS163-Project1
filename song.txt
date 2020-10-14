@@ -9,5 +9,21 @@ Joji;Slow Dancing in the Dark;3
 Taka;I am Bad at Programming;5
 55
 1
-0
+-1100
+Yorushika;Say It;4
+4
+78206467
+647000
+Yorushika;That's Why I Gave Up on Music;4
+6
+78403051
+665000
+Joji;Gimme Love;3
+45
+40713115
+1100000
+Taka;Sorry for my Spaghetti Code;10
+5
+5
+-10
 ~

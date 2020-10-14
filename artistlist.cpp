@@ -33,7 +33,7 @@ void ArtistList::artist_init(ifstream& artist_file){
 
 	Artist* add = new Artist(name, news, desc);
 	sort_artist(add);
-
+	
 	if(artist_file.peek() == '\n') artist_file.get();
 }
 
