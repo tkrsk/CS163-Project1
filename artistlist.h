@@ -1,3 +1,10 @@
+//TAKA MASAGATANI
+//CS260
+//FALL2020
+//PROJECT #1
+//HEADER FOR ARTIST LINKED LIST
+//EXTREMELY CLUTTERED SORRY
+
 #pragma once
 
 #include <cstring>
@@ -44,7 +51,7 @@ class ArtistList{
 	void print_songlist(char* parm);
 	void print_info(char* parm);
 
-//Misc functions to do string building
+//Misc functions to do dynamic cstring building
 	char* get_line(ifstream& input);
 	char* strbuild();
 

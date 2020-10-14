@@ -19,7 +19,3 @@ Seconds
 Views
 Likes
 ~
-
-MAKEFILE COMMANDS ARE:
-run: to execute program
-clean: to clean output files and executables

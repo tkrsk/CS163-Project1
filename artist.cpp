@@ -1,3 +1,10 @@
+//TAKA MASAGATANI
+//CS260
+//FALL2020
+//PROJECT #1
+//CPP FILE FOR ARTIST NODE
+//artist.cpp
+
 #include "artist.h"
 
 using namespace std;
@@ -9,6 +16,8 @@ Artist::Artist(){
 	artist_desc = nullptr;
 	next_artist = nullptr;
 }
+
+
 
 Artist::Artist(char* name, char* news, char* desc){
 	artist_name = new char[strlen(name) + 1];
@@ -22,6 +31,8 @@ Artist::Artist(char* name, char* news, char* desc){
 	
 	next_artist = nullptr;
 }
+
+
 
 //DESTRUCTORS
 Artist::~Artist(){
@@ -45,29 +56,42 @@ Artist::~Artist(){
 	}
 }	
 
+
+
 //ACCESSORS
 char* Artist::get_name(){
 	return artist_name;
 }
 
+
+
 char* Artist::get_news(){
 	return artist_news;
 }
+
+
 
 char* Artist::get_desc(){
 	return artist_desc;
 }
 
+
+
 Artist* Artist::get_next_artist(){
 	return next_artist;
 }
+
+
+
 SongList* Artist::get_songlist(){
 	return &discog;
 }
 
-//MUTATORS
+
+
+//MUTATORS(PRETTY REPETITIVE CODE TO CREATE DYNAMIC CSTRINGS, .ignore() WAS USED TO TEST BUFFER FLUSHING)
 void Artist::set_artist(Artist* parm){
-	char buffer = '\0';
+	char buffer = '\0'; //Buffer character to append to cstring 
 
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
@@ -77,7 +101,7 @@ void Artist::set_artist(Artist* parm){
 			artist_name[1] = '\0';
 		}
 		else{
-			char * temp = new char[strlen(artist_name) + 2];
+			char * temp = new char[strlen(artist_name) + 2]; //Temporary cstring to change artist name to right size
 			strcpy(temp, artist_name);
 			temp[strlen(temp)] = buffer;
 			temp[strlen(artist_name) + 1] = '\0';
@@ -88,8 +112,10 @@ void Artist::set_artist(Artist* parm){
 	//cin.ignore();
 }
 
+
+
 void Artist::set_news(Artist* parm){
-	char buffer = '\0';
+	char buffer = '\0'; //Buffer char to append to cstring
 	
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
@@ -99,7 +125,7 @@ void Artist::set_news(Artist* parm){
 			artist_news[1] = '\0';
 		}
 		else{
-			char * temp = new char[strlen(artist_news) + 2];
+			char * temp = new char[strlen(artist_news) + 2]; //Temporary cstring to change artist news to right size char array
 			strcpy(temp, artist_news);
 			temp[strlen(temp)] = buffer;
 			temp[strlen(artist_news) + 1] = '\0';
@@ -110,8 +136,10 @@ void Artist::set_news(Artist* parm){
 	//cin.ignore();
 }
 
+
+
 void Artist::set_desc(Artist* parm){
-	char buffer = '\0';
+	char buffer = '\0'; //Buffer char to append to cstring
 
 	while(cin.peek() != '\n'){
 		buffer = cin.get();
@@ -121,7 +149,7 @@ void Artist::set_desc(Artist* parm){
 			artist_desc[1] = '\0';
 		}
 		else{
-			char * temp = new char[strlen(artist_desc) + 2];
+			char * temp = new char[strlen(artist_desc) + 2]; //Temporary cstring to change artist description to right size char array
 			strcpy(temp, artist_desc);
 			temp[strlen(temp)] = buffer;
 			temp[strlen(artist_desc) + 1] = '\0';
@@ -132,14 +160,24 @@ void Artist::set_desc(Artist* parm){
 	//cin.ignore();
 }
 
+
+
+//MUTATOR TO CHANGE NEXT ARTIST NODE
 void Artist::set_next_artist(Artist* next){
 	next_artist = next;
 }
 
+
+
+//FUNCTION TO ADD A NEW SONG, CALLS FUNCTION IN SONGLIST
 void Artist::add_song(char* name, int min, int sec, int views, int likes){
 	discog.insert_song(name, min, sec, views, likes);
 }
 
+
+
+
+//PRINT FUNCTION, CALLS FUNCTION IN SONGLIST
 void Artist::print_songs(){
 	cout << "---" << endl;
 	discog.print(discog.get_songlist());

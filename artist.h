@@ -1,3 +1,10 @@
+//TAKA MASAGATANI
+//CS260
+//FALL2020
+//PROJECT #1
+//HEADER FOR ARTIST NODE
+//artist.h
+
 #pragma once
 
 #include <cstring>
@@ -26,7 +33,11 @@ class Artist{
 	void set_news(Artist* parm);
 	void set_desc(Artist* parm);
 	void set_next_artist(Artist* next);
+
+//Function to add new songs to songlist
 	void add_song(char* name, int min, int sec, int views, int likes);
+
+//Print Function
 	void print_songs();
 
 	private:

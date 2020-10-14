@@ -1,3 +1,10 @@
+//TAKA MASAGATANI
+//CS260
+//FALL2020
+//PROJECT #1
+//HEADER FOR SONG LINKED LIST
+//songlist.h
+
 #pragma once
 
 #include <cstring>
@@ -16,14 +23,21 @@ class SongList{
 //Accessor
 	Song* get_songlist();
 
-//Mutator
+//SONG INSERTION FUNCTION
 	void insert_song(char* input, int min, int sec, int views, int likes);
+
+//FUNCTION TO SEARCH FOR SONG TO EDIT VIEWS AND LIKES
 	void edit(char* parm);
+
+//FUNCTION TO REMOVE SONGS WITH LESS THAN x LIKES
 	void remove_song(int likes);
+
+//MUTATOR FOR CHANGING HEAD TO REORDER LL	
 	void set_first_song(Song* new_head);
+
 //Print 
 	void print(Song* parm);
 
 	private:
-	Song* first_song;
+	Song* first_song; //Head Song Node
 };
