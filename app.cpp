@@ -6,16 +6,16 @@ int main(int argc, char** argv, char** envp){
 	ArtistList record;
 	ifstream artist_file, song_file;
 
-	artist_file.open("artist.txt");
-	//while(artist_file != EOF && artist_file.good()){
+	artist_file.open("artist.txt");	
+	while(artist_file.peek() != '~'){
 		record.artist_init(artist_file);
-	//}
+	}
 	artist_file.close();
 
 	song_file.open("song.txt");
-	//while(!(song_file.eof()) && song_file.good()){
+	while(song_file.peek() != '~'){
 		record.songlist_init(song_file);
-	//}
+	}
 	song_file.close();
 
 	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Display info on an artist.\n(4): Add a new artist." << endl;
