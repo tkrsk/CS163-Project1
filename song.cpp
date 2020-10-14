@@ -16,13 +16,13 @@ Song::Song(char* name, int min, int sec, int views, int likes){
 	song_name = new char[strlen(name) + 1];
 	for(int idx = 0; idx < strlen(name) + 1; idx++) song_name[idx] = '\0';
 	strcpy(song_name, name);
-	song_name = name;
 	song_min = min;
 	song_sec = sec;
 	set_duration(min, sec);
 	song_views = views;
 	song_likes = likes;
 	next_song = nullptr;
+	delete [] name;
 }
 
 Song::~Song(){
@@ -30,15 +30,13 @@ Song::~Song(){
 		if(song_name[0] != '\0'){
 	  		for(int idx = 0; song_name[(idx) + 1] != '\0'; idx++) song_name[idx] = '\0';
 		}	
-		delete[] song_name;
-		song_name = nullptr;
+		delete [] song_name;
 	}
 	if(duration != nullptr){
 		if(duration[0] != '\0'){
 			for(int idx = 0; duration[(idx) + 1] != '\0'; idx++) duration[idx] = '\0';
 		}
 		delete [] duration;
-		duration = nullptr;
 	}
 	song_min = 0;
 	song_sec = 0;

@@ -35,6 +35,10 @@ void ArtistList::artist_init(ifstream& artist_file){
 	sort_artist(add);
 	
 	if(artist_file.peek() == '\n') artist_file.get();
+
+	delete [] name;
+	delete [] news;
+	delete [] desc;
 }
 
 void ArtistList::songlist_init(ifstream& song_file){
@@ -68,6 +72,8 @@ void ArtistList::songlist_init(ifstream& song_file){
 	song_file >> likes;
 	curr->add_song(title, min, sec, views, likes);
 	song_file.ignore();
+
+	delete [] artist;
 }
 
 //MUTATOR
@@ -225,8 +231,8 @@ void ArtistList::print_info(char* parm){
 			if(strcmp(parm, curr->get_name()) == 0){
 				cout << "---" << endl;
 				cout << "Artist Name: " << curr->get_name() << endl;
-				cout << "-\nDescription: " << curr->get_desc() << endl;
 				cout << "-\nRecent News: " << curr->get_news() << endl;
+				cout << "-\nDescription: " << curr->get_desc() << endl;
 				cout << "---" << endl;
 				found = true;
 			}

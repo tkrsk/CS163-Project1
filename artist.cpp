@@ -29,21 +29,18 @@ Artist::~Artist(){
 		if(artist_name[0] != '\0'){
 			for(int idx = 0; artist_name[(idx) + 1] != '\0'; idx++) artist_name[idx] = '\0';
 			delete [] artist_name;
-			artist_name = nullptr;
 		}
 	}
 	if(artist_news != nullptr){
 		if(artist_news[0] != '\0'){
 			for(int idx = 0; artist_news[(idx) + 1] != '\0'; idx++) artist_news[idx] = '\0';
 			delete [] artist_news;
-			artist_news = nullptr;
 		}
 	}
 	if(artist_desc != nullptr){
 		if(artist_desc[0] != '\0'){
 			for(int idx = 0; artist_desc[(idx) + 1] != '\0'; idx++) artist_desc[idx] = '\0';
 			delete [] artist_desc;
-			artist_desc = nullptr;
 		}
 	}
 }	
