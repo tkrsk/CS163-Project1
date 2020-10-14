@@ -4,7 +4,7 @@ using namespace std;
 
 Song::Song(){
 	song_name = nullptr;
-	duration = nullptr;
+	//duration = nullptr;
 	song_min = 0;
 	song_sec = 0;
 	song_views = 0;
@@ -18,26 +18,23 @@ Song::Song(char* name, int min, int sec, int views, int likes){
 	strcpy(song_name, name);
 	song_min = min;
 	song_sec = sec;
-	set_duration(min, sec);
+	//set_duration();
 	song_views = views;
 	song_likes = likes;
 	next_song = nullptr;
-	delete [] name;
+
 }
 
 Song::~Song(){
-	if(song_name != nullptr){
+if(song_name != nullptr){
 		if(song_name[0] != '\0'){
 	  		for(int idx = 0; song_name[(idx) + 1] != '\0'; idx++) song_name[idx] = '\0';
 		}	
 		delete [] song_name;
 	}
-	if(duration != nullptr){
-		if(duration[0] != '\0'){
-			for(int idx = 0; duration[(idx) + 1] != '\0'; idx++) duration[idx] = '\0';
-		}
+	/*if(duration != nullptr){
 		delete [] duration;
-	}
+	}*/
 	song_min = 0;
 	song_sec = 0;
 	song_views = 0;
@@ -49,9 +46,9 @@ char* Song::get_song_name(){
 	return song_name;
 }
 
-char* Song::get_duration(){
+/*char* Song::get_duration(){
 	return duration;
-}
+}*/
 
 int Song::get_views(){
 	return song_views;
@@ -74,42 +71,47 @@ void Song::edit_likes(int likes){
 	song_likes = likes;
 }
 
-void Song::set_duration(int min, int sec){
-	if(min < 10){
+//FUNCTION MYSTERIOUSLY PULLS RANDOM INFO OFF ISTREAM
+/*void Song::set_duration(){
+	if(song_min < 10){
 		duration = new char[5];
-		duration[0] = min + '0';
+		duration[0] = song_min + '0';
 		duration[1] = ':';
-		if(sec < 10){
+		if(song_sec < 10){
 			duration[2] = '0';
-			duration[3] = sec + '0';
+			duration[3] = song_sec + '0';
 		}
 		else{
-			duration[2] = (sec / 10) + '0';
-			duration[3] = (sec % 10) + '0';
+			duration[2] = (song_sec / 10) + '0';
+			duration[3] = (song_sec % 10) + '0';
 		}
+		cout << duration << endl;
 	}
 	else{
 		duration = new char[6];
-		duration[0] = (min / 10) + '0';
-		duration[1] = (min % 10) + '0';
+		duration[0] = (song_min / 10) + '0';
+		duration[1] = (song_min % 10) + '0';
 		duration[2] = ':';
-		if(sec < 10){
+		if(song_sec < 10){
 			duration[3] = '0';
-			duration[4] = sec + '0';
+			duration[4] = song_sec + '0';
 		}
 		else{
-			duration[3] = (sec / 10) + '0';
-			duration[4] = (sec % 10) + '0';
+			duration[3] = (song_sec / 10) + '0';
+			duration[4] = (song_sec % 10) + '0';
 		}
+		cout << duration << endl;
 	}
-}
+}*/
+
 void Song::set_next_song(Song* next){
 	next_song = next;
 }
 
 void Song::out(){
 	cout << "Song Title: " << song_name << endl;
-	cout << "Duration: " << duration << endl;
+	if(song_sec >= 10)cout << "Duration: " << song_min << ":" << song_sec <<  endl;
+	else cout << "Duration: " << song_min << ":0" << song_sec << endl;
 	cout << "Views: " << song_views << endl;
 	cout << "Likes: " << song_likes << endl;
 	cout << "---" << endl;

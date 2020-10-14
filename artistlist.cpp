@@ -72,7 +72,8 @@ void ArtistList::songlist_init(ifstream& song_file){
 	song_file >> likes;
 	curr->add_song(title, min, sec, views, likes);
 	song_file.ignore();
-
+	
+	delete [] title;
 	delete [] artist;
 }
 
@@ -178,6 +179,7 @@ void ArtistList::edit_song(char* parm){
 				char* song = strbuild();
 				temp->edit(song);
 				found = true;
+				delete [] song;
 			}
 			curr = curr->get_next_artist();
 		}

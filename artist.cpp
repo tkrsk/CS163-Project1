@@ -85,7 +85,7 @@ void Artist::set_artist(Artist* parm){
 			artist_name = temp;
 		}
 	}
-	cin.ignore();
+	//cin.ignore();
 }
 
 void Artist::set_news(Artist* parm){
@@ -107,7 +107,7 @@ void Artist::set_news(Artist* parm){
 			artist_news = temp;
 		}
 	}
-	cin.ignore();
+	//cin.ignore();
 }
 
 void Artist::set_desc(Artist* parm){
@@ -129,7 +129,7 @@ void Artist::set_desc(Artist* parm){
 			artist_desc = temp;
 		}
 	}
-	cin.ignore();
+	//cin.ignore();
 }
 
 void Artist::set_next_artist(Artist* next){
