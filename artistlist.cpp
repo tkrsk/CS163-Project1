@@ -36,7 +36,11 @@ void ArtistList::add_artist(){
 
 	cout << "Please enter a description about the artist: " << endl;
 	add->set_desc(add);
+	
+	sort_artist(add);
+}
 
+void ArtistList::sort_artist(Artist* add){
 	Artist* curr = head;
 
 	while(curr != nullptr){
@@ -131,35 +135,64 @@ void ArtistList::add_songlist(char* parm){
 	}
 }
 
-void ArtistList::artist_init(ifstream& input_file){
-	char *name, *news, *desc, * title;
-	name = get_line(input_file); 
-	input_file.ignore();
-	news = get_line(input_file); 
-	input_file.ignore();
-	desc = get_line(input_file); 
-	input_file.ignore();
-	head = new Artist(name, news, desc);
+void ArtistList::artist_init(ifstream& artist_file){
+	char *name, *news, *desc;
 
+	name = get_line(artist_file); 
+	artist_file.ignore();
+
+	news = get_line(artist_file); 
+	artist_file.ignore();
+
+	desc = get_line(artist_file); 
+	artist_file.ignore();
+
+	Artist* add = new Artist(name, news, desc);
+	sort_artist(add);
+}
+
+void ArtistList::songlist_init(ifstream& song_file){
+	Artist* temp = head;
+	char* artist = get_line(song_file);
+	song_file.ignore();
+	bool found = false;
+
+	if(temp == nullptr) cout << "There are no artist listed." << endl;
+	else{
+		while(temp != nullptr){
+			if(strcmp(artist, temp->get_name()) == 0){
+				found = true;
+				break;
+			}
+			temp = temp->get_next_artist();
+		}
+		if(found == false){
+		 cout << "Artist not found!" << endl;
+		 return;
+		}
+	}
+	while(song_file.peek() != '~'){
+	char* title;
 	int min = 0, 
 		sec = 0, 
 		views = 0, 
-		likes = 0;
-
-	title = get_line(input_file);
-	input_file.ignore();
-	input_file >> min;
-	input_file >> sec;
-	input_file >> views;
-	input_file >> likes;
-	head->add_song(title, min, sec, views, likes);
+		likes = 0;	
+	title = get_line(song_file);
+	song_file.ignore();
+	song_file >> min;
+	song_file >> sec;
+	song_file >> views;
+	song_file >> likes;
+	temp->add_song(title, min, sec, views, likes);
+	song_file.ignore();
+	}
 }
 
 char* ArtistList::get_line(ifstream& input){
 	char buffer = '\0';
 	char * output = nullptr;
 
-	while(input.peek() != '\n'){
+	while(input.peek() != ';'){
 		buffer = input.get();
 		if(output == nullptr){
 			output = new char[2];

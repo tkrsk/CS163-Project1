@@ -4,18 +4,27 @@ using namespace std;
 
 int main(int argc, char** argv, char** envp){
 	ArtistList record;
+	ifstream artist_file, song_file;
 
-	ifstream input_file;
-	input_file.open("data.txt");
-	record.artist_init(input_file);
+	artist_file.open("artist.txt");
+	//while(artist_file != EOF && artist_file.good()){
+		record.artist_init(artist_file);
+	//}
+	artist_file.close();
 
-	cout << "Please enter a number for one of the following commands: " << endl;
-	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Add a new artist." << endl;
-	cout << "(4): Add a new song to an artist's list.\n(5): Edit views and likes for a song.\n(6): Remove all songs with less than a certain amount of views." << endl;
+	song_file.open("song.txt");
+	//while(!(song_file.eof()) && song_file.good()){
+		record.songlist_init(song_file);
+	//}
+	song_file.close();
+
+	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Display info on an artist.\n(4): Add a new artist." << endl;
+	cout << "(5): Add a new song to an artist's list.\n(6): Edit views and likes for a song.\n(7): Remove all songs with less than a certain amount of views." << endl;
+	cout << "Please enter a number for one of the listed commands: " << endl;
 	
 	int command;
 	cin >> command;
-	while(command >= 1 && command <= 6){
+	while(command >= 1 && command <= 7){
 		cin.ignore();
 		switch(command){
 			case 1:{
@@ -29,22 +38,28 @@ int main(int argc, char** argv, char** envp){
 				break;
 			}
 			case 3:{
-				record.add_artist();
+				cout << "Please enter artist whose info you want to see: ";
+				char* temp = record.strbuild();
+				record.print_info(temp);
 				break;
 			}
 			case 4:{
+				record.add_artist();
+				break;
+			}
+			case 5:{
 				cout << "Please enter artist to add new song: ";
 				char* temp = record.strbuild();
 				record.add_songlist(temp);
 				break;
 			}
-			case 5:{
+			case 6:{
 				cout << "Please enter artist whose song you want to edit: ";
 				char* temp = record.strbuild();
 				//FIXME: ADD ARTIST SEARCH FUNCTION
 				break;
 			}
-			case 6:{
+			case 7:{
 				int remove;
 				cout << "Please enter a number to remove all songs with less than that many views: ";
 				cin >> remove;
@@ -52,10 +67,9 @@ int main(int argc, char** argv, char** envp){
 				break;
 			}
 		}
-	cout << "Please enter a number for one of the following commands: " << endl;
-	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Add a new artist." << endl;
-	cout << "(4): Add a new song to an artist's list.\n(5): Edit views and likes for a song.\n(6): Remove all songs with less than a certain amount of views." << endl;
+	cout << "(0): To Exit.\n(1): Show all artist.\n(2): Display all songs from an artist.\n(3): Display info on an artist.\n(4): Add a new artist." << endl;
+	cout << "(5): Add a new song to an artist's list.\n(6): Edit views and likes for a song.\n(7): Remove all songs with less than a certain amount of views." << endl;
+	cout << "Please enter a number for one of the listed commands: " << endl;
 	cin >> command;
 	}
-	input_file.close();
 }
