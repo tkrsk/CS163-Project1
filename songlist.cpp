@@ -1,10 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//CPP FOR SONG LINKED LIST
-//songlist.cpp
-
 #include "songlist.h"
 	
 using namespace std;

@@ -1,10 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//CPP FILE FOR ARTIST NODE
-//artist.cpp
-
 #include "artist.h"
 
 using namespace std;

@@ -1,10 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//CPP FILE FOR SONG NODE
-//song.cpp
-
 #include "song.h"
 
 using namespace std;

@@ -1,10 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//HEADER FOR SONG LINKED LIST
-//songlist.h
-
 #pragma once
 
 #include <cstring>

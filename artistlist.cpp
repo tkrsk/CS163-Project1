@@ -1,12 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//CPP FILE FOR ARTIST LINKED LIST
-//artistlist.cpp
-//VERY MESSY, LONG
-
-
 #include "artistlist.h"
 
 using namespace std;

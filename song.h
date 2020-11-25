@@ -1,10 +1,3 @@
-//TAKA MASAGATANI
-//CS260
-//FALL2020
-//PROJECT #1
-//Header for Song Node
-//song.h
-
 #pragma once
 
 #include <cstring>
